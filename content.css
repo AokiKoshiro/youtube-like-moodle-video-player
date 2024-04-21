@@ -1,0 +1,68 @@
+.video-notification {
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    transform: translateX(50%);
+    background: rgba(0, 0, 0, .5);
+    color: rgba(255, 255, 255, .9);
+    padding: 10px 20px !important;
+    border-radius: 3px;
+    font-size: 175%;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.5s ease-out;
+}
+
+div.miovip-controlpanel.c-blue .play-progress {
+    background-color: rgb(247, 37, 28) !important;
+    border: 1px solid rgb(247, 37, 28) !important;
+}
+
+div.miovip-controlpanel.c-blue .volume-pict-container div:not(.volume-unselect) {
+    background-color: rgb(247, 37, 28) !important;
+}
+
+#tool-action-button {
+    background-color: rgb(247, 37, 28) !important;
+}
+
+.btn-previous, .btn-next, .btn-autoplay {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-clip: content-box;
+}
+
+.btn-previous:hover, .btn-next:hover, .btn-autoplay:hover {
+    filter: brightness(1.2);
+}
+
+.btn-previous {
+    width: 14px;
+    height: 14px;
+    float: left;
+    margin: 10px 0 8px 16px !important;
+    background-image: var(--image-previous-button);
+}
+
+.btn-next {
+    width: 14px;
+    height: 14px;
+    float: left;
+    margin: 10px 16px 8px 0 !important;
+    background-image: var(--image-next-button);
+}
+
+.btn-autoplay {
+    width: 19px;
+    height: 19px;
+    float: right;
+    margin: 7px 7px 7px 0 !important;
+}
+
+.btn-autoplay[aria-checked="true"] {
+    background-image: var(--image-autoplay-on);
+}
+
+.btn-autoplay[aria-checked="false"] {
+    background-image: var(--image-autoplay-off);
+}

@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube-like Moodle Video Player",
+    "version": "1.0",
+    "description": "Waseda MoodleのビデオプレイヤーにYouTubeと同じ機能を追加します。",
+    "permissions": [
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://wsdmoodle.waseda.jp/mod/millvi/view.php*"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["https://wsdmoodle.waseda.jp/mod/millvi/view.php*"],
+            "js": ["content.js"],
+            "css": ["content.css"],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["speed.js", "images/*"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}
