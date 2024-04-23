@@ -1,22 +1,23 @@
-async function isUrlValid(url) {
-    try {
-        const response = await fetch(url, { method: 'HEAD' });
-        return response.ok;
-    } catch {
-        return false;
-    }
-}
-
 function getNextVideoUrl(step = 1) {
-    const url = new URL(window.location);
-    const id = Number(url.searchParams.get('id'));
-    url.searchParams.set('id', id + step);
-    return url.href;
+    const courseIndexItems = document.querySelectorAll('.courseindex-item');
+    let currentIndex = -1;
+    for (let i = 0; i < courseIndexItems.length; i++) {
+        if (courseIndexItems[i].classList.contains('pageitem')) {
+            currentIndex = i;
+            break;
+        }
+    }
+    const nextPageItem = courseIndexItems[currentIndex + step];
+    if (!nextPageItem) {
+        return null;
+    }
+    const url = nextPageItem.querySelector('a').href;
+    return url.match(/^https:\/\/wsdmoodle\.waseda\.jp\/mod\/millvi\/view\.php\?id=\d+$/g) ? url : null;
 }
 
-async function moveToVideo(step = 1) {
+function moveToVideo(step = 1) {
     const url = getNextVideoUrl(step);
-    if (await isUrlValid(url)) {
+    if (url) {
         sessionStorage.setItem('isVideoTransition', 'true');
         window.location.href = url;
     }
@@ -47,8 +48,9 @@ function createButton(className, onClick) {
     return button;
 }
 
-async function setupButtonVisibility(button, direction) {
-    if (!await isUrlValid(getNextVideoUrl(direction))) {
+function setupButtonVisibility(button, direction) {
+    const url = getNextVideoUrl(direction);
+    if (!url) {
         button.style.display = 'none';
     }
 }
